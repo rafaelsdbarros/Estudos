@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Times Favoritos</title>
+    </head>
+    <body>
+        <h1> Times de Esportes Favoritos </h1>
+
+        <div id="listaTimes"></div>
+
+        <div>
+            <label>Escolha a cor do time: </label>
+            <select name="times" id="timesID" onchange="showItem(this)">
+                <option value="none">--Escolha uma cor--</option>
+                <option value="chicago">Vermelho</option>
+                <option value="corinthians">Vermelho/Preto</option>
+                <option value="eagles">Verde</option>
+            </select>
+        </div>
+
+        <div>
+            <p id="timeEscolhido"></p>
+            <img id="imagemTime">
+        </div>
+
+        <script>
+            const time1 = ['Basquete', 'ChicagoBulls', '5 jogadores' , 'vermelho'];
+            const time2 = ['Futebol', 'Corinthians', '12 jogadores', 'vermelho/preto'];
+            const time3 = ['NFL', 'Eagles', '11 jogadores', 'verde'];
+
+            const listaTimes = [time1, time2, time3];
+
+            const parent = document.getElementById("listaTimes");
+            document.querySelector("img").width = "500";
+
+            for (let i = 0; i < listaTimes.length; i++) {
+                const p = document.createElement("p");
+                p.innerHTML = listaTimes[i];
+                parent.appendChild(p);
+            }
+
+            function showItem(selected) {
+                const timeEscolhido = document.getElementById("timeEscolhido");
+                const imagemTime = document.getElementById("imagemTime");
+
+                switch (getSelectedItem(selected)) {
+                    case "chicago":
+                        timeEscolhido.innerHTML = `Modalidade escolhida: ${time1}`
+                        imagemTime.src = "https://logosmarcas.net/wp-content/uploads/2020/07/Chicago-Bulls-logo.png"
+
+                        break;
+
+                    case "corinthians":
+                        timeEscolhido.innerHTML = `Modalidade escolhida: ${time2}`
+                        imagemTime.src = "https://i.pinimg.com/564x/f7/3a/ea/f73aea3ffc64c8fed5872ac0e736c656.jpg"
+                        break;
+
+                    case "eagles":
+                        timeEscolhido.innerHTML = `Modalidade escolhida: ${time3}`
+                        imagemTime.src = "https://i.ebayimg.com/images/g/rjQAAOSwRTlhMk4o/s-l1600.webp"
+                        break;
+                
+                    default:
+                        timeEscolhido.innerHTML = "";
+                        imagemTime.src = "";
+                        break;
+                }
+            }
+
+            function getSelectedItem(selected) {
+                return selected.options[selected.selectedIndex].value
+            }
+        </script>
+    </body>
+</html>
